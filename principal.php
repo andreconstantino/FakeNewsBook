@@ -10,11 +10,9 @@
         *{
             box-sizing: border-box;
         }
-
         .field:not(:last-child) {
             margin-bottom: 0px;
-        }
-        
+        }        
         .map-gui{
             width:100%;
             height:250px;
@@ -32,13 +30,8 @@
             border: 1px solid #000000;
             display:flex;
             margin-bottom:10px;
-
-
-
-
         }
         .title-gui{
-
             font-size:20px;
         }
         .subtitle-gui{

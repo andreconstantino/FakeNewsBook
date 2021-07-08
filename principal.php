@@ -1,3 +1,29 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "fakeanalyzermock";
+
+
+
+
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
+$sql = "SELECT * FROM noticia ";
+$result = $conn->query($sql);
+
+
+?>
+
+
+
+
 <html>
   <head>
     <meta charset="utf-8">
@@ -40,6 +66,7 @@
         .box-gui{
             display:flex; justify-content:space-between;border: 1px solid #dbdbdb;
             margin-bottom: 10px;
+            padding: 15px;
 
         }
         .box-gui article{
@@ -96,63 +123,62 @@ Lorem ipisum dolor sit amet
 </h1> 
 
 
-<div class="box content box-gui" style="margin-bottom: 10px;">
-<article>
-<h5 style="padding-bottom:5px; margin-bottom: 0px;">lorem ipisum dolor a a a a a a a a  ament Teste kkk bla  </h5>
-<span class="tag is-danger">Noticia Falsa</span>
-<br/>
+<?php
 
-<span>23 horas</span>
-
-</article>
-<img src="https://bulma.io/images/placeholders/128x128.png">
-
-
-</div>
-
-
-<div class="box content box-gui" style="margin-bottom: 10px;">
-<article >
-<h5 style="padding-bottom:5px; margin-bottom: 0px;">lorem ipisum dolor a a a a a a a a  ament Teste kkk bla bla bla</h5>
-<span class="tag is-success">Noticia Verdadeira</span>
-<br/>
-<span>23 horas</span>
-
-</article>
-<img src="https://bulma.io/images/placeholders/128x128.png">
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+      $Titulo = $row["titulo"];
+      $Id = $row["id"];
+      $Texto = $row["texto"];
+      $Texto2 = $row["texto2"];
+      $Visualizacao = $row["visualizacao"];
+      $Data = $row["data"];
+      $Status = $row["status"];
+      $Foto = $row["foto"];
+      $MiniFoto = $row["miniFoto"];
+  
+      
 
 
-</div>
+      ?>
+    <a href="noticia.php?id=<?php echo $Id; ?>">  
+    <div class="box content box-gui" style="margin-bottom: 10px;">
+        <article>
+            <h5 style="padding-bottom:5px; margin-bottom: 0px;"><?php echo $Titulo; ?>  </h5>
+            <?php
+            if($Status == 0){
+                        echo"<span class='tag is-success '>Notícia verdadeira</span>";
 
-<div class="box content box-gui" style="margin-bottom: 10px;">
-<article>
-<h5 style="padding-bottom:5px; margin-bottom: 0px;">lorem ipisum dolor a a a a a a a a  ament Teste kkk bla bla bla</h5>
-<span class="tag is-success">Noticia Verdadeira</span>
-<br/>
-<span>23 horas</span>
+                    }else{
+                        echo"<span class='tag is-danger '>Notícia falsa</span>";
+                    }
+                    ?>
+            <br/>
+            <span><?php echo$Data;?></span>
+        </article>
+        <img src="data:image/jpeg;base64,<?php echo base64_encode( $MiniFoto ); ?>">
+    </div>
+    </a>  
+      
+      
+      <?php
+  
+  
+     
+    }
+  } else {
+    echo "0 results";
+  }
+  $conn->close();
 
-</article>
-
-
-
-</div>
-
-
-
-
-<div class="box content box-gui" style="margin-bottom: 10px;">
-<article>
-<h5 style="padding-bottom:5px; margin-bottom: 0px;">lorem ipisum dolor a a a a a a a a  ament Teste kkk bla  </h5>
-<span class="tag is-danger">Noticia Falsa</span>
-<br/>
-
-<span>23 horas</span>
-
-</article>
-<img src="https://bulma.io/images/placeholders/128x128.png">
+?>
 
 
-</div>
+
+
+
+
 
 
         

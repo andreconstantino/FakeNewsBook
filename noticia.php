@@ -1,4 +1,17 @@
 <?php
+
+if(isset($_GET['id'])){
+
+
+
+$IdNoticia = $_GET['id'];
+
+
+
+
+
+
+
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -22,7 +35,7 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT * FROM noticia WHERE id = '1';";
+$sql = "SELECT * FROM noticia WHERE id = $IdNoticia;";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -99,8 +112,15 @@ $conn->close();
   </head>
   <body>
   <section style="padding-bottom:0px" class="section">
+        
     <div class="container-gui content is-medium">
-        <h1 >
+        <a href="principal.php" class="button">
+            <span class="icon">
+            <i class="fas fa-arrow-left"></i>
+            </span>
+            <span>Voltar</span>
+        </a>
+        <h1 style="margin-top: 5px;">
             <?php echo $Titulo;?>
         </h1>
         
@@ -186,5 +206,10 @@ $conn->close();
 
 
 include 'comentarios.php';
+
+}
+else{
+    echo "deu ruim";
+}
 
 ?>

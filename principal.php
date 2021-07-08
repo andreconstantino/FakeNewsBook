@@ -37,6 +37,18 @@
         .subtitle-gui{
             font-size:10px;
         }
+        .box-gui{
+            display:flex; justify-content:space-between;border: 1px solid #dbdbdb;
+            margin-bottom: 10px;
+
+        }
+        .box-gui article{
+            padding-right:10px; padding-top:2px;
+        }
+        .box-gui img{
+            width:100px;
+            height:100px;
+        }
     </style>
 
 </head>
@@ -79,69 +91,70 @@
 <img class="map-gui" src="https://lh3.googleusercontent.com/OOy8crH8HuezjHqrIEUvDnIjwO5v8A5JWwpz6SwQs-p3zvR54BARyVMUDCJlNTiDZfA=w374-rwa"/>
 
 <section class="container-gui">    
-        <h1 class="title">
-        Lorem ipisum dolor sit amet
-        </h1>  
-        <div class="mini-box-noticia">
+<h1 class="title">
+Lorem ipisum dolor sit amet
+</h1> 
 
-            <div style="width:25%;">
-            <img class="img-mini-noticia" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqyQKkEnsHS8Rl3hq9GjAlN712j9ZTWL16TZcZzbmCM-Pf2GaUT97Gv2ScPetyS7xQnME&usqp=CAU"/>
 
-            </div>
-            <div style="width:75%;  padding:10px; overflow: hidden; text-overflow: ellipsis; ">
-  
-            <h1 class="title " style="font-size:20px;">
-            bla bla bla bals lba labla lgfdsadf dddddd bal bal a bla bal bal balbalba balba bal b alb albalb al bal balbalba balba bal b alb albalb
-            </h1>
-           
-            </div>
-            
-        </div>  
-        <div class="mini-box-noticia">
+<div class="box content box-gui" style="margin-bottom: 10px;">
+<article>
+<h5 style="padding-bottom:5px; margin-bottom: 0px;">lorem ipisum dolor a a a a a a a a  ament Teste kkk bla  </h5>
+<span class="tag is-danger">Noticia Falsa</span>
+<br/>
 
-<div style="width:25%;">
-<img class="img-mini-noticia" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqyQKkEnsHS8Rl3hq9GjAlN712j9ZTWL16TZcZzbmCM-Pf2GaUT97Gv2ScPetyS7xQnME&usqp=CAU"/>
+<span>23 horas</span>
 
-</div>
-<div style="width:75%;  padding:10px; overflow: hidden; text-overflow: ellipsis; ">
+</article>
+<img src="https://bulma.io/images/placeholders/128x128.png">
 
-<h1 class="title " style="font-size:20px;">
-bla bla bla bals lba labla lgfdsadf dddddd bal bal a bla bal bal balbalba balba bal b alb albalb al bal balbalba balba bal b alb albalb
-</h1>
 
 </div>
 
-</div> 
-<div class="mini-box-noticia">
 
-<div style="width:25%;">
-<img class="img-mini-noticia" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqyQKkEnsHS8Rl3hq9GjAlN712j9ZTWL16TZcZzbmCM-Pf2GaUT97Gv2ScPetyS7xQnME&usqp=CAU"/>
+<div class="box content box-gui" style="margin-bottom: 10px;">
+<article >
+<h5 style="padding-bottom:5px; margin-bottom: 0px;">lorem ipisum dolor a a a a a a a a  ament Teste kkk bla bla bla</h5>
+<span class="tag is-success">Noticia Verdadeira</span>
+<br/>
+<span>23 horas</span>
 
-</div>
-<div style="width:75%;  padding:10px; overflow: hidden; text-overflow: ellipsis; ">
+</article>
+<img src="https://bulma.io/images/placeholders/128x128.png">
 
-<h1 class="title " style="font-size:20px;">
-bla bla bla bals lba labla lgfdsadf dddddd bal bal a bla bal bal balbalba balba bal b alb albalb al bal balbalba balba bal b alb albalb
-</h1>
-
-</div>
-
-</div> 
-<div class="mini-box-noticia">
-
-<div style="width:25%;">
-<img class="img-mini-noticia" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqyQKkEnsHS8Rl3hq9GjAlN712j9ZTWL16TZcZzbmCM-Pf2GaUT97Gv2ScPetyS7xQnME&usqp=CAU"/>
-
-</div>
-<div style="width:75%;  padding:10px; overflow: hidden; text-overflow: ellipsis; ">
-
-<h1 class="title " style="font-size:20px;">
-bla bla bla bals lba labla lgfdsadf dddddd bal bal a bla bal bal balbalba balba bal b alb albalb al bal balbalba balba bal b alb albalb
-</h1>
 
 </div>
 
-</div> 
+<div class="box content box-gui" style="margin-bottom: 10px;">
+<article>
+<h5 style="padding-bottom:5px; margin-bottom: 0px;">lorem ipisum dolor a a a a a a a a  ament Teste kkk bla bla bla</h5>
+<span class="tag is-success">Noticia Verdadeira</span>
+<br/>
+<span>23 horas</span>
+
+</article>
+
+
+
+</div>
+
+
+
+
+<div class="box content box-gui" style="margin-bottom: 10px;">
+<article>
+<h5 style="padding-bottom:5px; margin-bottom: 0px;">lorem ipisum dolor a a a a a a a a  ament Teste kkk bla  </h5>
+<span class="tag is-danger">Noticia Falsa</span>
+<br/>
+
+<span>23 horas</span>
+
+</article>
+<img src="https://bulma.io/images/placeholders/128x128.png">
+
+
+</div>
+
+
         
 </section>
 

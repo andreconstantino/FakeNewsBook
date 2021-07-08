@@ -1,4 +1,32 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "fakeanalyzermock";
 
+$Titulo = "";
+$Id = "";
+$Texto = "";
+$Texto2 = "";
+$Data = "";
+$Foto = "";
+$Status = "";
+$Visualizacao = "";
+
+
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
+$sql = "SELECT * FROM comentarios";
+$result = $conn->query($sql);
+
+
+?>
 
 
 <!DOCTYPE html>
@@ -16,6 +44,7 @@
         }
         .title{
             font-size: 2rem;
+            margin-bottom: 100px;            
         }
         hr{
             margin: 10px 0;
@@ -26,43 +55,79 @@
         .element{
             margin: 3px 0px;
         }
+        .comentario h6{
+            margin-bottom:0px;
+        }
+   
     </style>
 
 
 
   </head>
   <body>
-  <section class="section">
-    <div class="container-gui">
-        <h4 class="title is-4">Comentarios</h4>
+  <section style="padding: 0px 1.5rem;" class="section">
+    <div class="container-gui content ">
 
-        <hr/>
-        <div class="comentario">
-            <h6 class="title is-6">Username</h6>
-            <h6 class="subtitle is-6">Comment bla bla bla..</h6>          
-        </div>
-        <hr/>
-        <div class="comentario">
-            <h6 class="title is-6">Username</h6>
-            <h6 class="subtitle is-6">Comment bla bla bla..</h6>          
-        </div>
-        <hr/>
-        <div class="comentario">
-            <h6 class="title is-6">Username</h6>
-            <h6 class="subtitle is-6">Comment bla bla bla..</h6>          
-        </div>
-        <hr/>
-        <button class="button is-small is-info is-outlined">Ler mais comentarios</button>
+        <?php
+        
+        if ($result->num_rows > 0) {
+
+            echo "<h6 style='margin-bottom:0px;';><i class='far fa-comments'></i> Comentarios ($result->num_rows)</h6>";
+            echo "<hr/>";
+            // output data of each row
+            while($row = $result->fetch_assoc()) {
+                
+              
+              
+
+              ?>
+                <div class="comentario">
+                    <div style=" display:flex; justify-content:space-between">
+                    <label style="margin-bottom:0px;"><?php echo $row['username'];?></label> 
+                    <label>
+                    <span class="icon-text">
+                        <span class="icon">
+                        <i class="far fa-calendar-check"></i>
+                        </span>
+                        <span><?php echo $row['data'];?></span>
+                    </span>
+                    </label> 
+                    </div>
+                    <p><?php echo $row['comentario'];?></p>          
+                </div>
+                <hr/>
+              <?php
+          
+            
+             
+            }
+            if($result->num_rows >5){
+            echo "<button class='button is-small is-info is-outlined'>Ler mais comentarios</button>";
+            }
+          } else {
+            echo "0 results";
+          }
+          
+        $conn->close();
+        
+        ?>
+    
+        
+
+        
+        
+        
+        
         
     </div>
-    <div class="container-gui">
-        <h4 class="title is-4">Comentar</h4>
+    <div class="container-gui content">
+        <h6 style='margin-bottom:0px;';> Comentar </h6>
 
         <div class="comentar">
         
-        <input class="element input is-small" type="text" placeholder="Escreva seu nome">
-        <textarea class="element textarea is-small" placeholder="Escreva um comentario..."></textarea>
-        <button class="element is-small button is-info">Comentar</button>          
+       
+        <textarea style="min-height: 5em;" class="element textarea " placeholder="Escreva um comentario..."></textarea>
+        <button class="element  button is-info">Comentar</button>          
         
         </div>
        

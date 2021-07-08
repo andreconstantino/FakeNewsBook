@@ -1,3 +1,52 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "fakeanalyzermock";
+
+$Titulo = "";
+$Id = "";
+$Texto = "";
+$Texto2 = "";
+$Data = "";
+$Foto = "";
+$Status = "";
+$Visualizacao = "";
+
+
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
+$sql = "SELECT * FROM noticia WHERE id = '1';";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+  // output data of each row
+  while($row = $result->fetch_assoc()) {
+    $Titulo = $row["titulo"];
+    $Id = $row["id"];
+    $Texto = $row["texto"];
+    $Texto2 = $row["texto2"];
+    $Visualizacao = $row["visualizacao"];
+    $Data = $row["data"];
+    $Status = $row["status"];
+    $Foto = $row["foto"];
+
+
+   
+  }
+} else {
+  echo "0 results";
+}
+$conn->close();
+?>
+
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -10,7 +59,7 @@
     <style>
 
         .container-gui{            
-            margin-bottom: 30px;
+            
         }
         .title{
             font-size: 2rem;
@@ -30,51 +79,80 @@
             margin-bottom:10px;
         }
         .container-gui img{
-            width:100%;
-            height: 150px;
+            max-width:100%;
+            max-height: 200px;
             background-color:#C1CDC1;
+            
+            
             margin-top:10px;
+            margin-bottom:10px;
 
         }
+        .section {
+            padding: 2rem 1.5rem;
+        }
+        
         
     
     </style>
 
   </head>
   <body>
-  <section class="section">
-    <div class="container-gui">
-        <h1 class="title">
-            Lorem ipisum dolor sit amet
+  <section style="padding-bottom:0px" class="section">
+    <div class="container-gui content is-medium">
+        <h1 >
+            <?php echo $Titulo;?>
         </h1>
-        <span class="tag is-success is-large">Notícia verdadeira</span>
-        <img src="https://socialistmodernism.com/wp-content/uploads/2017/07/placeholder-image.png" alt="Italian Trulli">
-        <p class="subtitle">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi mattis enim dolor, ut egestas nunc tincidunt ac. Nullam tempus, ex nec cursus fermentum.
-        </p>
-        <p class="subtitle">
-            Consectetur adipiscing elit mattis enim.
+        
+        <?php 
+        
+
+        if($Status == 0){
+            echo"<span class='tag is-success is-large'>Notícia verdadeira</span>";
+
+        }else{
+            echo"<span class='tag is-danger is-large'>Notícia falsa</span>";
+        }
+        ?>
+
+        
+        
+
+
+
+
+        
+        <br/>
+        
+        <img class="img-gui" src="data:image/jpeg;base64,<?php echo base64_encode( $Foto ); ?>" />
+
+        
+
+        <p >
+            <?php echo $Texto;?>        </p>
+        <p >
+            <?php echo $Texto2;?>        </p>
         </p>
         <hr/>
-        <div style=" display:flex; justify-content:space-between">
-            <div>
+        <div  style="height: 50px; font-size:15px; display:flex; justify-content:space-between">
+            <div >
             <span class="icon-text">
                 <span class="icon">
                     <i class="far fa-calendar-alt"></i>
                 </span>
-                <span>14/06/2021</span>
+                <span><?php echo $Data;?></span>
             </span>
             <br/>
             <span class="icon-text">
                 <span class="icon">
                     <i class="far fa-eye"></i>
                 </span>
-                <span>1.520</span>
+                <span><?php echo $Visualizacao;?></span>
             </span>
             </div>
             
-            <div>
-            <p>Compartilhar:</p>
+            <div style="max-width:50%;">
+            <p style="margin-bottom:0px;">Compartilhar</p>
             <p class="buttons">
                 
                 <button class="button" style="background-color:#8b9dc3">
@@ -83,6 +161,7 @@
                     </span>
                     
                 </button>
+               
                 <button class="button" style="background-color:#25D366">
                     <span class="icon is-small">
                         <i class="fab fa-whatsapp"></i>
@@ -102,3 +181,10 @@
   </section>
   </body>
 </html>
+
+<?php
+
+
+include 'comentarios.php';
+
+?>

@@ -117,10 +117,10 @@ $result = $conn->query($sql);
 
 <img class="map-gui" src="https://lh3.googleusercontent.com/OOy8crH8HuezjHqrIEUvDnIjwO5v8A5JWwpz6SwQs-p3zvR54BARyVMUDCJlNTiDZfA=w374-rwa"/>
 
-<section class="container-gui">    
-<h1 class="title">
-Lorem ipisum dolor sit amet
-</h1> 
+<section class="container-gui content">    
+<h3 class="title">
+Notícias mais circuladas esta semana
+</h3> 
 
 
 <?php

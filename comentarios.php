@@ -58,6 +58,9 @@ $result = $conn->query($sql);
         .comentario h6{
             margin-bottom:0px;
         }
+        .comentar{
+          display: flex;
+        }
    
     </style>
 
@@ -121,20 +124,22 @@ $result = $conn->query($sql);
         
     </div>
     <div class="container-gui content">
-        <h6 style='margin-bottom:0px;';> Comentar </h6>
+        <h6 style='margin-bottom:5px;';> Comentar </h6>
 
         <div class="comentar">
         
        
-        <textarea style="min-height: 5em;" class="element textarea " placeholder="Escreva um comentario..."></textarea>
-        <button class="element  button is-info">Comentar</button>          
+        <input class="input" type="text" placeholder="Escreva um comentario">
+
+        <button style="margin-left:5px;" class=" button is-info">Comentar</button>          
         
         </div>
        
         
     </div>
    
-    
+    <hr/> 
   </section>
+ 
   </body>
 </html>

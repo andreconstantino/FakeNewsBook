@@ -194,18 +194,31 @@ $conn->close();
 
         
 
-        
+
 
   
     </div>
+
+
   </section>
   </body>
 </html>
 
 <?php
+        include 'comentarios.php';
+        ?>
+        <section style=" padding-top:0px;" class="section">
+        <a href="principal.php" class="button">
+            <span class="icon">
+            <i class="fas fa-arrow-left"></i>
+            </span>
+            <span>Voltar</span>
+        </a>
 
+        </section>
 
-include 'comentarios.php';
+       
+<?php
 
 }
 else{

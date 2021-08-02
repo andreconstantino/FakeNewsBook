@@ -68,7 +68,7 @@ $result = $conn->query($sql);
 
   </head>
   <body>
-  <section style="padding: 0px 1.5rem;" class="section">
+  <section style="padding-top: 0px; padding-bottom:0px;" class="section">
     <div class="container-gui content ">
 
         <?php

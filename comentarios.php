@@ -15,6 +15,7 @@ $Visualizacao = "";
 
 
 
+
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
@@ -104,7 +105,7 @@ $result = $conn->query($sql);
             
              
             }
-            if($result->num_rows >5){
+            if($result->num_rows >){
             echo "<button class='button is-small is-info is-outlined'>Ler mais comentarios</button>";
             }
           } else {
@@ -123,20 +124,28 @@ $result = $conn->query($sql);
         
         
     </div>
+    <form method="post" action="./postcomment.php">
+
+    
+
+
+
+
     <div class="container-gui content">
         <h6 style='margin-bottom:5px;';> Comentar </h6>
 
         <div class="comentar">
         
        
-        <input class="input" type="text" placeholder="Escreva um comentario">
+        <input class="input" name="fname" type="text" placeholder="Escreva um comentario">
 
-        <button style="margin-left:5px;" class=" button is-info">Comentar</button>          
+        <button type="submit" style="margin-left:5px;" class=" button is-info">Comentar</button>          
         
         </div>
        
         
     </div>
+    </form>
    
     <hr/> 
   </section>

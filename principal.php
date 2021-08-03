@@ -5,9 +5,6 @@ $password = "";
 $dbname = "fakeanalyzermock";
 
 
-
-
-
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
@@ -21,14 +18,12 @@ $result = $conn->query($sql);
 
 ?>
 
-
-
-
 <html>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Hello Bulma!</title>
+    <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
@@ -43,9 +38,7 @@ $result = $conn->query($sql);
             width:100%;
             height:250px;
         }
-        .container-gui{
-            padding: 10px;
-        }
+
         .img-mini-noticia{
             width:100%;
             height:100%;
@@ -69,6 +62,9 @@ $result = $conn->query($sql);
             padding: 15px;
 
         }
+        .container-gui{
+            padding: 5px;
+        }
         .box-gui article{
             padding-right:10px; padding-top:2px;
         }
@@ -83,7 +79,7 @@ $result = $conn->query($sql);
 
 
 
-  
+<div class="container-gui">
 
       
 <div class="field has-addons">
@@ -175,16 +171,10 @@ if ($result->num_rows > 0) {
 ?>
 
 
-
-
-
-
-
-
-        
+       
 </section>
 
-
+</div>
 
 </body>
 </html>

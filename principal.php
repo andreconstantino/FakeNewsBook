@@ -1,3 +1,20 @@
+
+<?php
+include("./nav_bar.php");
+
+if (!empty($_GET['valor_pesquisa'])) {
+?>
+<article class="message is-success">
+  <div class="message-body">
+    <?php echo $_GET['valor_pesquisa'] ?>
+  </div>
+</article>
+<?php
+}
+
+
+?>
+
 <?php
 $servername = "localhost";
 $username = "root";
@@ -11,18 +28,13 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
-
-$sql = "SELECT * FROM noticia ";
-$result = $conn->query($sql);
-
-
 ?>
-
+ 
 <html>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hello Bulma!</title>
+    <title>FakeAnalyzer</title>
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -73,46 +85,116 @@ $result = $conn->query($sql);
             height:100px;
         }
     </style>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load( {
+        'packages':['geochart'],
+        // Note: Because this chart requires geocoding, you'll need mapsApiKey.
+        // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
+        'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+      });
+      google.charts.setOnLoadCallback(drawRegionsMap);
+
+
+
+   
+      
+
+
+    function drawRegionsMap() {
+
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Region');
+      data.addColumn('number', 'Fake News');
+
+      data.addRows([       
+      <?php
+        $sql_query_noticias = "SELECT estados.nome, noticia.titulo FROM estados INNER JOIN noticia ON estados.id = noticia.estados_fk";
+        $result_query_noticias = $conn->query($sql_query_noticias);
+
+        if ($result_query_noticias->num_rows > 0) {          
+            
+          while($row = $result_query_noticias->fetch_assoc()) {             
+            echo "['",$row["nome"],"',1],";                          
+          }
+          echo("['',0]  ");            
+        }
+      ?>           
+      ]);    
+
+      var options = {            
+        resolution: 'provinces', 
+        region: 'BR',  
+        colorAxis: {colors: ['purple']} 
+      };
+
+      var chart = new google.visualization.GeoChart(document.getElementById('geochart-colors'));
+      chart.draw(data, options);
+      };
+
+      
+    </script>
 
 </head>
 <body>
-
-
-
+<br/>
 <div class="container-gui">
 
-      
-<div class="field has-addons">
-  <div class="control is-expanded">
-  <div class="control has-icons-left ">
-    <input class="input " type="email" placeholder="Normal">
-    <span class="icon is-left">
-        <i class="fas fa-search"></i>
-    </span>   
-  </div>
-  </div>
-  <p class="control">
-        <span class="select ">
-        <select>
-            <option>SP</option>
-            <option>RJ</option>            
-        </select>
-        </span>
+
+<form method="GET" action="./principal.php">
+  <div class="field has-addons">
+
+    <p class="control is-expanded">
+      <input class="input is-medium is-rounded" name="valor_pesquisa" type="text" placeholder="Procure uma noticia aqui">
     </p>
     <p class="control">
-        <span class="select ">
-        <select>
-            <option>7 dias</option>
-            <option>30 dias</option>
-            <option>100 dias</option>
-        </select>
-        </span>
+      <button type="submit" class="button is-medium is-primary is-rounded ">
+        <i class="fas fa-search"></i>
+    </button>
     </p>
+  </div>
+</form> 
+      
+
+
+<div class="tabs" >
+  <ul>
+    <li class="is-active"><a>Notícias da semana</a></li>
+    <li><a>Mais visualizadas</a></li>
+    <li><a>Todas as notícias</a></li>  
+    
+  </ul>
+</div> 
+
+<h4 class="title is-4">Mapa de noticias</h4>
+
+<center>
+  <div id="geochart-colors"  style="min-width:300px; max-width: 400px; height:auto;  "></div>   
+</center>
+<!--
+<section class="container-gui content">
+
+<h4 class="title" style="margin-bottom: 5px;">
+Assuntos:
+</h4> 
+
+<div class="tags">
+<?php
+$sql_query_assuntos = "SELECT * FROM assuntos ";
+$result_query_assuntos = $conn->query($sql_query_assuntos);
+
+if ($result_query_assuntos->num_rows > 0) {
+  while($row = $result_query_assuntos->fetch_assoc()) {
+  echo "<span class='tag'>",$row["nome"],"</span>";
+  }
+}
+?>  
   
 </div>
 
-<img class="map-gui" src="https://lh3.googleusercontent.com/OOy8crH8HuezjHqrIEUvDnIjwO5v8A5JWwpz6SwQs-p3zvR54BARyVMUDCJlNTiDZfA=w374-rwa"/>
-
+</section>
+-->
+<br/>
 <section class="container-gui content">    
 <h3 class="title">
 Notícias mais circuladas esta semana
@@ -120,6 +202,8 @@ Notícias mais circuladas esta semana
 
 
 <?php
+$sql = "SELECT * FROM noticia ";
+$result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     // output data of each row
@@ -133,6 +217,10 @@ if ($result->num_rows > 0) {
       $Status = $row["status"];
       $Foto = $row["foto"];
       $MiniFoto = $row["miniFoto"];
+      
+      
+      //echo "----------";
+      //echo $row["estados_fk"];
   
       
 

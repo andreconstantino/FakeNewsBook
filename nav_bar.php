@@ -23,19 +23,24 @@ function fecharMenu(var_menu){
  </script> 
 <div class="card" style="width: 100%; height:60px; background-color:#e0e0e0 ; 
  position: fixed; z-index: 100; display:flex; flex-direction:row;justify-content:space-between" >
-<div>
-<img  style="width:60px; margin-left:10px;" src="https://cdn-icons-png.flaticon.com/128/5359/5359828.png"></img>
-
+<div style = "    display: flex;
+    flex-direction: column;
+    justify-content: center;
+">
+<!--<img  style="width:60px; margin-left:10px;" src="https://cdn-icons-png.flaticon.com/128/5359/5359828.png"></img>-->
+<img  style="  margin-left:10px;  padding-right:0px; min-width:150px; max-width:220px;" src="img/logo.png"></img>
 </div>
-<div >
+<div style="    display: flex;
+    justify-content: flex-end;
+    align-items: center;">
 
-<a  style=" visibility: hidden; margin-top:10px;margin-right:10px;" class="button  ">
-    <i class="fas fa-user-times"></i>  </a>
-  <button onclick="fecharMenu('menuUsuario')" style="margin-top:10px;margin-right:10px;" class="button  ">
-    <i class="fas fa-user"></i>  </button>
-  <button onclick="fecharMenu('menu')" style="margin-top:10px;margin-right:10px;" class="button ">
+    
+    <button onclick="fecharMenu('menuUsuario')" style="margin:10px; margin-left:0px" class="button  ">
+      <i class="fas fa-user"></i>  
+    </button>
+    <button onclick="fecharMenu('menu')" style="margin:10px; margin-left:0px; " class="button ">
       <i class="fas fa-ellipsis-v"></i>
-</button>
+    </button>
 </div>
 </div>
 <div style="width: 100%; height:50px;">

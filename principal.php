@@ -2,20 +2,13 @@
 <?php
 include("./nav_bar.php");
 
+$valor_pesquisa = "a";
+
 if (!empty($_GET['valor_pesquisa'])) {
-?>
-<article class="message is-success">
-  <div class="message-body">
-    <?php echo $_GET['valor_pesquisa'] ?>
-  </div>
-</article>
-<?php
+  $valor_pesquisa = $_GET['valor_pesquisa'];
+
 }
 
-
-?>
-
-<?php
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -34,7 +27,7 @@ if ($conn->connect_error) {
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Fakebook</title>
+    <title>Fake news book</title>
     <link rel="icon" href="img/mini-logo.png">
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
@@ -160,9 +153,11 @@ if ($conn->connect_error) {
 
 <div class="tabs" >
   <ul>
-    <li class="is-active"><a>Notícias da semana</a></li>
-    <li><a>Mais visualizadas</a></li>
-    <li><a>Todas as notícias</a></li>  
+    <li class="is-active"><a href="principal.php?filter=latest">Ultimas noticias</a></li>
+    <li><a href="principal.php?filter=more">Mais visualizadas</a></li>
+    <li><a href="principal.php?filter=all">Todas as notícias</a></li> 
+    <li><a href="principal.php?filter=false">Apenas falsas</a></li> 
+    <li><a href="principal.php?filter=true">Apenas verdadeiras</a></li>  
     
   </ul>
 </div> 
@@ -203,7 +198,58 @@ Notícias mais circuladas esta semana
 
 
 <?php
-$sql = "SELECT * FROM noticia ";
+//$sql = "SELECT * FROM `noticia` ORDER BY data DESC";
+
+//$sql = "SELECT * FROM `noticia` WHERE `titulo` LIKE '%+$valor_pesquisa+%' OR `texto` LIKE '%+$valor_pesquisa+%' OR `texto2` LIKE '%+$valor_pesquisa+%' ORDER BY `data` DESC";
+
+$sql = "SELECT * FROM `noticia` WHERE `titulo` LIKE '%$valor_pesquisa%' OR `texto` LIKE '%$valor_pesquisa%' OR `texto2` LIKE '%$valor_pesquisa%' ORDER BY `data` DESC ";
+
+
+
+//$valor_pesquisa;
+
+if(!empty($_GET['filter'])){
+
+
+
+  switch ($_GET['filter']) {
+    case "false":
+      
+      $sql = "SELECT * FROM `noticia` WHERE status = '1'";
+     
+      break; 
+    case "true":
+      
+      $sql = "SELECT * FROM `noticia` WHERE status = '0'";
+       
+      break; 
+    case "latest":
+      
+      $sql = "SELECT * FROM `noticia` ORDER BY data DESC";
+
+      break;  
+    case "more":
+      
+      $sql = "SELECT * FROM `noticia` order by visualizacao desc";
+     
+      break; 
+    case "all":
+      
+      $sql = "SELECT * FROM noticia ";
+      break;   
+    default:
+      echo "default";
+      $sql = "SELECT * FROM noticia ";
+  }
+
+
+
+
+}
+
+
+
+
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {

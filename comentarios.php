@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "fakeanalyzermock";
+$dbname = "fakeanalyzer";
 
 $Titulo = "";
 $Id = "";

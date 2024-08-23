@@ -12,7 +12,7 @@ if (!empty($_GET['valor_pesquisa'])) {
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "fakeanalyzermock";
+$dbname = "fakeanalyzer";
 
 
 // Create connection

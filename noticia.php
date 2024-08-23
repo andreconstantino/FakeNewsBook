@@ -8,7 +8,7 @@ if (isset($_GET['id']))
     $servername = "localhost";
     $username = "root";
     $password = "";
-    $dbname = "fakeanalyzermock";
+    $dbname = "fakeanalyzer";
     $Titulo = "";
     $Id = "";
     $Texto = "";
@@ -169,7 +169,7 @@ if (isset($_GET['id']))
     $servername = "localhost";
     $username = "root";
     $password = "";
-    $dbname = "fakeanalyzermock";
+    $dbname = "fakeanalyzer";
     $Titulo = "";
     $Id = "";
     $Texto = "";
